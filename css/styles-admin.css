@@ -1,0 +1,135 @@
+form{
+    border:1px solid #8DFF69;
+    width:550px;
+    margin:auto;
+
+    margin-top: 70px;
+    padding-left: 15px;
+
+    padding-bottom: 10px;
+}
+
+
+form h3{
+
+    /* font-weight: bold; */
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 35px;
+
+}
+
+form label{
+    width: 210px;
+    float: left;
+    text-align: left;
+}
+
+form .seccion{
+    /* background-color: #111; */
+    margin-bottom: 25px;
+}
+
+
+form #opciones{
+    /* background-color: #111; */
+    text-align: center;
+    margin:auto;
+    background-color: #fff;
+
+    /* //margin-left: 10px; */
+}
+
+
+#codigo{
+    width:  230px;
+    text-align: left;
+}
+
+#nombre{
+    width:  230px;
+    text-align: left;
+}
+
+#fechanac{
+    width:  230px;
+    text-align: center;
+    
+}
+
+
+form #opciones input{
+    /* background-color: #111; */
+    text-align: center;
+    margin:auto;
+    background-color: #8DFF69;
+
+    color: #fff;
+
+    border-radius: 9px;
+    border-color: #fff;
+
+    width: 120px;
+    height: 50px;
+}
+
+form #opciones2 input{
+    /* background-color: #111; */
+    text-align: center;
+    
+    margin:auto;
+    
+    background-color: #8DFF69;
+
+    color: #fff;
+
+    border-radius: 9px;
+    border-color: #fff;
+
+    width: 120px;
+    height: 50px;
+}
+
+.graf #perrito{
+    text-align: center;
+    margin:auto;
+
+    width: 100px; 
+    height: 100px;
+
+    margin-left: 935px;
+}
+
+.graf2 #perrito2{
+    text-align: center;
+    margin:auto;
+
+    /* width: 100px;  */
+    /* height: 100px; */
+    margin-top: 10px;
+    margin-left: 435px;
+}
+
+.graf2 #perrito3{
+    text-align: center;
+    margin:auto;
+
+    /* width: 100px;  */
+    /* height: 100px; */
+    margin-top: 10px;
+    margin-left: 435px;
+}
+
+h1{
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 35px;
+    color: #8DFF69;
+}
+
+
+.busqueda p{
+    color: #8DFF69;
+    text-align: center;
+    font-size: 25px;
+}
