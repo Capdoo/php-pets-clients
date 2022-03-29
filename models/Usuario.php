@@ -79,11 +79,11 @@
 
         }
 
-        public function login_usuario($password_front, $password_BD){
+        public function login_usuario($password_front, $password_BD, $id_BD){
 
             if(md5($password_front) == $password_BD){
-                $_SESSION['user_id'] = $this->id;
-                echo "EXISTE";
+                $_SESSION['user_id'] = $id_BD;
+                
                 return "Logeado";
             }else{
                 return "Contraseña Incorrecta";

@@ -1,8 +1,10 @@
 <?php
-
-    session_unset();
-    //session_destroy();
     session_start();
+
+
+
+    
+
 ?>
 
 
@@ -14,14 +16,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/styles-admin.css">
-    <title>Login</title>
+    <title>Panel Cliente</title>
 </head>
 <body>
     
     <!-- No Sesion -->
-    <?php require '../partials/header-admin-panel.php' ?>
+    <?php require '../partials/header-cliente-panel.php' ?>
 
-    <h1>Este es el panel de ADMIN</h1>
+    <h1>Este es el panel de CLIENTE para sus Mascotas</h1>
 
     <div class="graf">
         <img id="perrito" src="../img/admin/admin-1.png" alt="perrito-1">

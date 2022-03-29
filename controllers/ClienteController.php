@@ -1,62 +1,75 @@
 <?php
     
-    require_once "../models/Usuario.php";
+    require_once "../models/Cliente.php";
 
-    // class UserController extends Usuario{
-    class UserController{
+    class ClienteController{
 
         public function __construct(){
-            //parent::__construct();
+
         }
 
-        public function registrarUsuario($apellido_paterno, $apellido_materno, $nombres, $username, $password, $email, $genero, $telefono, $rol){
+        public function registrarCliente($apellido_paterno, $apellido_materno, $nombres, $username, $password, $email, $telefono, $direccion, $genero){
             //Creamos la instancia
-            $usuarioModel = new Usuario();
-            $rol_nombre = "";
-
-            $usuarioModel->apellido_paterno = $apellido_paterno;
-            $usuarioModel->apellido_materno = $apellido_materno;
-            $usuarioModel->nombres = $nombres;
-            $usuarioModel->username = $username;
-            $usuarioModel->password = $password;
-            $usuarioModel->email = $email;
-            $usuarioModel->genero = $genero;
-            $usuarioModel->telefono = $telefono;
-
-            if($rol == "admin"){
-                $rol_nombre = "admin";
-            }
-            elseif ($rol == "veterinario") {
-                $rol_nombre = "veterinario";
-            }else{
-                $rol_nombre = "superadmin";
-            }
+            $clienteModel = new Cliente();
+                $clienteModel->apellido_paterno = $apellido_paterno;
+                $clienteModel->apellido_materno = $apellido_materno;
+                $clienteModel->nombres = $nombres;
+                $clienteModel->username = $username;
+                $clienteModel->password = $password;
+                $clienteModel->email = $email;
+                $clienteModel->telefono = $telefono;
+                $clienteModel->direccion = $direccion;
+                $clienteModel->genero = $genero;
 
             //Llamar metodo
-            return $usuarioModel->registrar_usuario($rol_nombre);
+            return $clienteModel->registrar_cliente();
         }
 
 
-        public function loginUsuario($username, $password_front){
+        public function loginCliente($username, $password_front){
             //Creamos la instancia
             $respuesta = "";
-            $usuarioModel = new Usuario();
-            $usuarioObtenido = $usuarioModel->get_by_username($username);
+            $clienteModel = new Cliente();
+            $clienteObtenido = $clienteModel->get_by_username($username);
 
             //Para ver si existe el usuario
-            if($usuarioObtenido->id){
-                $password_BD = $usuarioObtenido->password;
-                $respuesta_login = $usuarioModel->login_usuario($password_front, $password_BD);
-
-                if($respuesta_login == "Logeado"){
-                    $respuesta = $usuarioModel->obtener_rol($usuarioObtenido->id);
-                }else{
-                    $respuesta = $respuesta_login;
-                }
-
+            if($clienteObtenido->id){
+                $password_BD = $clienteObtenido->password;
+                $id_BD = $clienteObtenido->id;
+                $respuesta = $clienteObtenido->login_cliente($password_front, $password_BD, $id_BD);
             }else{
                 $respuesta = "Ese Usuario No Existe";
             }
+            return $respuesta;
+        }
+
+        public function obtenerClientePorId($id){
+            //Creamos la instancia
+            $respuesta = "";
+            $clienteModel = new Cliente();
+            $clienteObtenido = $clienteModel->get_by_id($id);
+
+            //Para ver si existe el usuario
+            if($clienteObtenido->nombres){
+                $respuesta = $clienteObtenido;
+                //$respuesta = $clienteObtenido->login_cliente($password_front, $password_BD, $id_BD);
+            }else{
+                $respuesta = "Ese Usuario No Existe";
+            }
+            return $respuesta;
+        }
+
+
+        public function obtenerNombreCliente($clienteModel){
+            //Creamos la instancia
+            $respuesta = "";
+
+            $apellido_paterno = $clienteModel->apellido_paterno;
+            $apellido_materno = $clienteModel->apellido_materno;
+            $nombres = $clienteModel->nombres;
+
+            $respuesta = ''.$apellido_paterno.' '.$apellido_materno.' '.$nombres;
+
             return $respuesta;
         }
 

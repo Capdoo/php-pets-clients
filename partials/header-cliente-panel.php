@@ -15,7 +15,8 @@
                 <!-- <li><a href="">Clientes</a></li> -->
                     
                 <li style="float:right"><a href="../models/Close.php">Cerrar Sesión</a></li>
-                <li style="float:right"><a href="../views/consulta-register-view.php">Crear Consulta</a></li>
+                <li style="float:right"><a href="../views/mascota-register-view.php">Mis Mascotas</a></li>
+                <li style="float:right"><a href="../views/mascota-historial-view.php">Historial Mascota</a></li>
 
             <ul>
         </nav>

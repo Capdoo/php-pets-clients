@@ -1,5 +1,5 @@
 <?php
-    
+
     require_once "../models/Usuario.php";
 
     // class UserController extends Usuario{
@@ -46,7 +46,8 @@
             //Para ver si existe el usuario
             if($usuarioObtenido->id){
                 $password_BD = $usuarioObtenido->password;
-                $respuesta_login = $usuarioModel->login_usuario($password_front, $password_BD);
+                $id_BD = $usuarioObtenido->id;
+                $respuesta_login = $usuarioModel->login_usuario($password_front, $password_BD, $id_BD);
 
                 if($respuesta_login == "Logeado"){
                     $respuesta = $usuarioModel->obtener_rol($usuarioObtenido->id);

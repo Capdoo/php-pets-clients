@@ -1,3 +1,51 @@
+<?php
+
+    require_once "../controllers/ClienteController.php";
+    require_once "../models/Utils.php";
+
+
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        
+        $mensaje_registro = "Empty";
+        $clienteClase = new ClienteController();
+
+        $apellido_paterno = $_POST['apellido_paterno'];
+        $apellido_materno = $_POST['apellido_materno'];
+        $nombres =  $_POST['nombres'];
+        $username = $_POST['username'];
+        $password= $_POST['password']; 
+        $email= $_POST['email'];
+        $telefono = $_POST['telefono'];
+        $direccion = $_POST['direccion'];
+        $genero = $_POST['genero'];  
+
+        $utilsClase = new Utils();
+        $mensaje_clave = $utilsClase->verificar_contraseña($password);
+
+        if($mensaje_clave == "Empty"){
+            $mensaje_registro = $clienteClase->registrarCliente(
+                $apellido_paterno,
+                $apellido_materno,
+                $nombres,
+                $username,
+                $password,
+                $email,
+                $telefono,
+                $direccion,
+                $genero
+            );
+        }else{
+            $mensaje_registro = $mensaje_clave;
+        }
+    
+
+
+    }
+
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,13 +62,32 @@
     <!-- No Sesion -->
     <?php require '../partials/header-cliente.php' ?>
 
+    <?php if(!empty($mensaje_registro)): ?>
+        <?php 
+            echo '';
+            if($mensaje_registro == "Registrado"){
+                echo '<h1>Registro Exitoso</h1>';
+            }else{
+                echo '<h1>Hubo Un Error</h1>';
+                echo '<h1>'.$mensaje_registro.'</h1>';
+            }
+            //echo ''.$usuarios_lista;
+        ?>
+    <?php endif; ?>
 
-    <form action="register.php" method="POST">
+
+
+    <form action="clientes-register-view.php" method="POST">
         <h3>Registrarse</h3>
     
         <div class="seccion">
-            <label for="apellidos">Ingresar Apellidos</label>
-            <input name="apellidos" id="codigo" Type Text></p>
+            <label for="apellido_paterno">Ingresar Apellido Paterno</label>
+            <input name="apellido_paterno" id="codigo" Type Text></p>
+        </div>
+
+        <div class="seccion">
+            <label for="apellido_materno">Ingresar Apellido Materno</label>
+            <input name="apellido_materno" id="codigo" Type Text></p>
         </div>
 
         <div class="seccion">
@@ -39,15 +106,25 @@
         </div>
 
         <div class="seccion">
-            <label for="password2">Repetir Contraseña</label>
-            <input name="password2" id="nombre" Type="password"></p>
+            <label for="email">Ingresar Email</label>
+            <input name="email" id="nombre" Type Text></p>
+        </div>
+
+        <div class="seccion">
+            <label for="telefono">Ingresar Telefono</label>
+            <input name="telefono" id="nombre" Type Text></p>
+        </div>
+
+        <div class="seccion">
+            <label for="direccion">Ingresar Direccion</label>
+            <input name="direccion" id="nombre" Type Text></p>
         </div>
 
         <div class="seccion">
             <label for="">Genero:</label>
 
-            <input name="Genero" Type="Radio"> Masculino
-            <input name="Genero" Type="Radio"> Femenino</p>
+            <input name="genero" Type="Radio"> Masculino
+            <input name="genero" Type="Radio"> Femenino</p>
         </div>
 
         <div id="opciones">

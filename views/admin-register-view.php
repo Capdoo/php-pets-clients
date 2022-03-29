@@ -1,11 +1,12 @@
-<?php
+    <?php
 
-    require_once "../models/Usuario.php";
-    require_once "../controllers/UserController.php";
+        require_once "../models/Usuario.php";
+        require_once "../controllers/UserController.php";
+        require_once "../models/Utils.php";
 
-    // $usuarioClase = new Usuario();
-    // $usuarios_lista = $usuarioClase->get_usuarios();
-    $mensaje_registro = "Empty";
+
+
+
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
 
         $usuarioClase = new UserController();
@@ -19,22 +20,26 @@
         $email= $_POST['email']; 
         $genero = $_POST['genero']; 
         $telefono = $_POST['telefono']; 
-    
-        $mensaje_registro = $usuarioClase->registrarUsuario(
-            $apellido_paterno,
-            $apellido_materno,
-            $nombres,
-            $username,
-            $password,
-            $email,
-            $genero,
-            $telefono,
-            $rol_nombre
-        );
 
+        $utilsClase = new Utils();
+        $mensaje_clave = $utilsClase->verificar_contraseña($password);
+
+        if($mensaje_clave == "Empty"){
+            $mensaje_registro = $usuarioClase->registrarUsuario(
+                $apellido_paterno,
+                $apellido_materno,
+                $nombres,
+                $username,
+                $password,
+                $email,
+                $genero,
+                $telefono,
+                $rol_nombre
+            );
+        }else{
+            $mensaje_registro = $mensaje_clave;
+        }
     }
-
-
 ?>
 
 
@@ -51,19 +56,22 @@
 </head>
 <body>
 
-    <!-- No Sesion -->
-    <?php require '../partials/header-admin.php' ?>
+    <?php require '../partials/header-admin.php'; ?> 
 
 
-    <?php 
-        echo '';
-        if($mensaje_registro == "Registrado"){
-            echo '<h1>Registro Exitoso</h1>';
-        }else{
-            echo '<h1>Hubo Un Error</h1>';
-        }
-        //echo ''.$usuarios_lista;
-    ?>
+    <?php if(!empty($mensaje_registro)): ?>
+        <?php 
+            if($mensaje_registro == "Registrado"){
+                echo '<h1>Registro Exitoso</h1>';
+            }else{
+                echo '<h1>Hubo Un Error</h1>';
+                echo '<h1>'.$mensaje_registro.'</h1>';
+            }
+
+        ?>
+    <?php endif; ?>
+
+
 
     <form action="admin-register-view.php" method="POST">
         <h3>Registrarse</h3>
@@ -92,11 +100,6 @@
             <label for="password">Ingresar Contraseña</label>
             <input name="password" id="nombre" Type="password"></p>
         </div>
-
-        <!-- <div class="seccion">
-            <label for="password2">Repetir Contraseña</label>
-            <input name="password2" id="nombre" Type="password"></p>
-        </div> -->
 
         <div class="seccion">
             <label for="email">Ingresar Email</label>

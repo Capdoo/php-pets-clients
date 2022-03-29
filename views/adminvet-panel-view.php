@@ -1,3 +1,13 @@
+<?php
+
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +21,7 @@
 <body>
     
     <!-- No Sesion -->
-    <?php require '../partials/header-admin-panel.php' ?>
+    <?php require '../partials/header-adminvet-panel.php' ?>
 
     <h1>Este es el panel de VETERINARIOS</h1>
 

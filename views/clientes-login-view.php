@@ -1,3 +1,29 @@
+<?php
+
+    require_once "../controllers/ClienteController.php";
+
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
+
+        $mensaje = 'Empty';
+
+        $username = $_POST['username'];
+        $password= $_POST['password'];
+
+        $clienteController = new ClienteController();
+        $respuesta = $clienteController->loginCliente($username, $password);
+        
+        echo ''.$respuesta;
+        if($respuesta == "Logeado"){
+            $mensaje = $respuesta;
+            header("Location: clientes-panel-view.php");
+        }else{
+            $mensaje = $respuesta;
+        }
+    }
+
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +40,17 @@
     <!-- No Sesion -->
     <?php require '../partials/header-cliente.php' ?>
 
-    <form action="login.php" method="POST">
+    <?php if(!empty($mensaje)): ?>
+        <?php
+            if($mensaje == "Logeado"){
+                echo '<h1>Logeo Exitoso</h1>';
+            }else{
+                echo '<h1>Hubo Un Error</h1>';
+            }
+        ?>
+    <?php endif; ?>
+
+    <form action="clientes-login-view.php" method="POST">
         <h3>Login</h3>
         
         <div class="seccion">

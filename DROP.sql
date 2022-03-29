@@ -1,3 +1,11 @@
+perros
+apoderados
+usuarios roels
+roels
+usuarios
+
+
+
 DROP TABLE USUARIOS_ROLES;
 DROP TABLE USUARIOS;
 DROP TABLE ROLES;
